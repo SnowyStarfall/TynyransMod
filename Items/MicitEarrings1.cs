@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace TynyransMod.Items
 {
-	public class MicitBangle : ModItem
+	public class MicitEarrings1 : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Micit Bangle"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("Increases parried projectile damage by 250%.\n\"A bangle made of Micit. It exudes immense power.\"");
+			DisplayName.SetDefault("Micit Earring (Left)"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			Tooltip.SetDefault("\"Earrings made from Micit. They radiate excessive magic power.\"\n+75% magic damage and 10% magic crit chance.\nSet bonus: Having both earrings on reduces mana cost by 35%.");
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 30;
-			item.height = 24;
+			item.width = 28;
+			item.height = 28;
 			item.value = 10000;
 			item.rare = 12;
       item.accessory = true;
@@ -23,8 +23,9 @@ namespace TynyransMod.Items
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-      player.Tyn().micitBangle = true;
-			player.Tyn().hemomancy = true;
+			player.magicDamage += 0.75f;
+			player.magicCrit += 10;
+			player.Tyn().micitEarrings1 = true;
     }
 
 		public override void AddRecipes()

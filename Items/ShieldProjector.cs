@@ -1,38 +1,35 @@
-using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria;
+using Terraria.Audio;
+using TynyransMod.Projectiles;
+using Microsoft.Xna.Framework;
 
 namespace TynyransMod.Items
 {
-  public class Revolver777 : ModItem
+  public class ShieldProjector : ModItem
   {
+    public override string Texture => "Terraria/Item_" + ItemID.SpectreStaff;
+
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault(".777 Revolver");
-      Tooltip.SetDefault("\"Hell of a kick!\"");
+      DisplayName.SetDefault("Shield Projector");
+      Tooltip.SetDefault("Summons a shield that protects you from enemy projectiles!");
     }
 
     public override void SetDefaults()
     {
-      item.damage = 205;
-      item.width = 46;
-      item.height = 24;
-      item.rare = 12;
-      item.useTime = 75;
-      item.useAnimation = 75;
-      item.useTurn = false;
-      item.useStyle = ItemUseStyleID.HoldingOut;
-      item.scale = 1.0f;
-      item.ranged = true;
-      item.noMelee = true;
-      item.autoReuse = false;
-      item.knockBack = 3f;
-      item.useAmmo = mod.ItemType("Round777");
-      item.shootSpeed = 75f;
-      item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Shot777");
+      item.CloneDefaults(ItemID.SpectreStaff);
+      item.damage = 0;
+      item.magic = false;
+      item.shoot = ModContent.ProjectileType<ProjectorShield>();
+      item.shootSpeed = 0f;
     }
-
+    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    {
+      position = Main.MouseWorld;
+      return true;
+    }
     public override void AddRecipes()
     {
       // Recipes here. See Basic Recipe Guide2

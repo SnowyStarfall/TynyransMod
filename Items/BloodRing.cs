@@ -4,27 +4,29 @@ using Terraria.ModLoader;
 
 namespace TynyransMod.Items
 {
-	public class MicitBangle : ModItem
+	public class BloodRing : HemoItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Micit Bangle"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("Increases parried projectile damage by 250%.\n\"A bangle made of Micit. It exudes immense power.\"");
+			DisplayName.SetDefault("Blood Ring");
+			Tooltip.SetDefault("Increases hemomancy power by 25% and blood capacity by 10.\nReduces blood consumed on Blood Amp usage by 5.\nOnly equippable when hemomancy is enabled.");
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 30;
-			item.height = 24;
+			item.width = 28;
+			item.height = 20;
 			item.value = 10000;
-			item.rare = 12;
+			item.rare = ItemRarityID.Pink;
       item.accessory = true;
 		}
 
+    public override bool CanEquipAccessory(Player player, int slot) => player.Tyn().hemomancy;
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-      player.Tyn().micitBangle = true;
-			player.Tyn().hemomancy = true;
+      player.Tyn().hemoDamage += 0.25f;
+      player.Tyn().bloodConsumedOnUse -= 5;
+      player.Tyn().maxBloodLevel += 10;
     }
 
 		public override void AddRecipes()
