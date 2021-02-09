@@ -5,6 +5,7 @@ namespace TynyransMod.Items
 {
   public class Round777 : ModItem
   {
+
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault(".777 Round");

@@ -6,10 +6,9 @@ namespace TynyransMod
 {
   public class TynGlobalProj : GlobalProjectile
   {
-    public bool bloodAmpBoosted;
-    public bool deflected;
-    public bool note;
+    public bool deflected = false;
     public override bool InstancePerEntity => true;
     public override bool CloneNewInstances => true;
+
   }
 }
